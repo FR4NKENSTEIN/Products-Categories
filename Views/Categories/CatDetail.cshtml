@@ -1,0 +1,28 @@
+
+@model Association
+
+<h1 class="text-center mt-5">@ViewBag.Cat.Name</h1>
+<div class="row mt-5">
+   <div class="col text-center">
+      <h2>Products:</h2>
+      <ul>
+         @foreach (Association pro in @ViewBag.Cat.OfProducts)
+         {
+            <li>@pro.Product.Name</li>
+         }
+      </ul>
+   </div>
+   <div class="col">
+      <h5>Add Products:</h5>
+      <form asp-action="CatAdder" asp-controller="Categories" method="post">
+         <select class="custom-select" asp-for="ProductId">
+            @foreach (Product pro in @ViewBag.ProsAvailable)
+            {
+                <option value="@pro.ProductId">@pro.Name</option>
+            }
+         </select>
+         <input type="hidden" value="@ViewBag.Cat.CategoryId" asp-for="CategoryId">
+         <button type="submit" class="btn">Add</button>
+      </form>
+   </div>
+</div>

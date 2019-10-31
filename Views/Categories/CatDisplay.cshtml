@@ -1,0 +1,23 @@
+
+@model Category
+
+<div class="row mt-5">
+  <div class="col border-warning border-right">
+    <h2 class="mb-5 text-center">New Category</h2>
+    <form asp-action="CatCreator" asp-controller="Categories" method="post">
+      <div class="form-group">
+        <label asp-for="Name"></label>
+        <input type="text" asp-for="Name" class="form-control">
+        <span asp-validation-for="Name" class="text-danger"></span>
+      </div>
+      <button type="submit" class="btn btn-success">Create</button>
+    </form>
+  </div>
+  <div class="col text-center">
+    <h2 class="mb-3">Existing Categories</h2>
+    @foreach (Category cat in @ViewBag.Items)
+    {
+      <a href="/categories/@cat.CategoryId"><h3>@cat.Name</h3></a>
+    }
+  </div>
+</div>
